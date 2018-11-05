@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Mswenko Shoes</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"> -->
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+  
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <!-- adding handlebars tempalte -->
+  <script type="text/x-template" class="shoeTemplate">
+
+    {{#each shoesData}}
+         <ul>
+        <li>{{brands}}</li>
+        <li>{{colors}}</li>
+        <li>Size: {{size}}</li>
+        <li>Available: {{qty}}</li>
+        <li>Price: R {{price}}</li>
+       </ul>
+       <button value={{this.id}} class="cart-btn" onclick="addToCart({{this.id}})">add to cart</button>
+    {{/each}}
+
+  </script>
+
+  <!-- <script type="text/x-template" class="shoeCart">
+
+    
+        {{#each basket}}
+         <ul>
+        <li>{{brand}}</li>
+        <li>{{color}}</li>
+        <li>Size: {{size}}</li>
+        <li>Available: {{in_stock}}</li>
+        <li>Price: R {{price}}</li>
+       </ul> -->
+       <!-- <button value={{this.id}} class="cart-btn" onclick="addToCart({{this.id}})">add to cart</button> -->
+    <!-- s -->
+
+  <!-- </script> -->
+<!-- 
+  <script type="text/x-template" class="addCart">
+
+    <h6>Shopping Cart</h6>
+    {{#each cart}}
+     <ul>
+    <li>{{brand}}</li>
+    <li>{{color}}</li>
+    <li>Size: {{size}}</li>
+    <li>Quantity: {{qty}}</li>
+    <li>Price: R {{price}}</li>
+   </ul>
+   <button value= {{this.id}} class="remove-btn" onclick= "removeFromCart({{this.id}})" >Cancel</button>
+{{/each}}
+
+<button  class="checkout-btn" onclick= checkOutShoe() >CheckOut</button> -->
+
+
+
+</script>
+
+
+
+</head>
+
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <h1>Shoe catalogue</h1>
+
+    <div class="row">
+      <div class="twelve columns">
+        <div class="three columns">
+          <form class="dropdown-menu">
+            <select class="brands">
+              <option class="brands" value="">Brands</option>
+              <option class="brands" value="">All Brands</option>
+              <option class="brands" value="adidas">Adidas</option>
+              <option class="brands" value="all star">All Star</option>
+              <option class="brands" value="asics">Asics</option>
+              <option class="brands" value="puma">Puma</option>
+              <option class="brands" value="nike">Nike</option>
+              <option class="brands" value="new balance">New Balance</option>
+              <option class="brands" value="superga">Superga</option>
+              <option class="brands" value="vans">Vans</option>
+            </select>
+          </form>
+        </div>
+        <div class="three columns ">
+          <form class="">
+            <select class="colours ">
+              <option class="" value="">Colour</option>
+              <option class="" value="">All Colours</option>
+              <option class="" value="black">Black</option>
+              <option class="" value="blue">Blue</option>
+              <option class="" value="brown">Brown</option>
+              <option class="" value="white">White</option>
+              <option class="" value="red">Red</option>
+            </select>
+          </form>
+        </div>
+        <div class="three columns ">
+          <form class="">
+            <select class="sizes">
+              <option class="sizes" value="">Size</option>
+              <option class="sizes" value="">All Sizes</option>
+              <option class="sizes" value="4">4</option>
+              <option class="sizes" value="5">5</option>
+              <option class="sizes" value="6">6</option>
+              <option class="sizes" value="7">7</option>
+              <option class="sizes" value="8">8</option>
+              <option class="sizes" value="9">9</option>
+              <option class="sizes" value="10">10</option>
+              <option class="sizes" value="11">11</option>
+              <option class="sizes" value="12">12</option>
+            </select>
+          </form>
+        </div>
+        <div class="three columns">
+          <button type="button" class=" fliter-btn button-primary">Apply</button>
+        </div>
+      </div>
+    </div>
+    <div class="error"></div>
+    <div class="row">
+      <div class="displayShoes"></div>
+      
+    </div>
+
+    <div class="displayCart"></div>
+  </div>
+  
+  <script src="js/catalogue.js" charset="utf-8"></script>
+  <script src="js/shoe-dom.js" charset="utf-8"></script>
+
+  <!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

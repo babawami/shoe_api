@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Mswenko Shoes</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"> -->
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+  
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <!-- adding handlebars tempalte -->
+  
+
+</head>
+
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- <div class="container"> -->
+    <h1>Shoe catalogue</h1>
+
+    <div class="row">
+      <div class="twelve columns">
+        <div class="two columns">
+          <form class="dropdown-menu">
+            <select class="add-brands">
+              <option class="brands" value="">Brands</option>
+              <option class="brands" value="">All Brands</option>
+              <option class="brands" value="adidas">Adidas</option>
+              <option class="brands" value="all star">All Star</option>
+              <option class="brands" value="asics">Asics</option>
+              <option class="brands" value="puma">Puma</option>
+              <option class="brands" value="nike">Nike</option>
+              <option class="brands" value="new balance">New Balance</option>
+              <option class="brands" value="superga">Superga</option>
+              <option class="brands" value="vans">Vans</option>
+            </select>
+          </form>
+        </div>
+        <div class="two columns ">
+          <form class="">
+            <select class="add-colours ">
+              <option class="" value="">Colour</option>
+              <option class="" value="">All Colours</option>
+              <option class="" value="black">Black</option>
+              <option class="" value="blue">Blue</option>
+              <option class="" value="brown">Brown</option>
+              <option class="" value="white">White</option>
+              <option class="" value="red">Red</option>
+            </select>
+          </form>
+        </div>
+        <div class="two columns ">
+          <form class="">
+            <select class="add-sizes">
+              <option class="sizes" value="">Size</option>
+              <option class="sizes" value="">All Sizes</option>
+              <option class="sizes" value="4">4</option>
+              <option class="sizes" value="5">5</option>
+              <option class="sizes" value="6">6</option>
+              <option class="sizes" value="7">7</option>
+              <option class="sizes" value="8">8</option>
+              <option class="sizes" value="9">9</option>
+              <option class="sizes" value="10">10</option>
+              <option class="sizes" value="11">11</option>
+              <option class="sizes" value="12">12</option>
+            </select>
+          </form>
+        </div>
+        <div class="two columns">
+            <input value="" class="add-quantity" type="number" placeholder="Quantity" pattern="[0-9]" >
+        </div>
+        <div class="two columns">
+            <input value="" class="add-price" type="number" placeholder="Price" pattern="[0-9]" >
+        </div>
+
+        <div class="one columns">
+          <button type="button" class=" add-btn button-primary">Apply</button>
+        </div>
+      </div>
+
+      <div class="shoeMessage"></div>
+    <!-- </div> -->
+  
+  <script src="js/catalogue.js" charset="utf-8"></script>
+  <script src="js/addShoe-dom.js" charset="utf-8"></script>
+
+  <!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>
