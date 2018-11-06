@@ -6,10 +6,6 @@ let addQuantity = document.querySelector('.add-quantity');
 let shoeMessage = document.querySelector('.shoeMessage');
 let addBtn = document.querySelector('.add-btn');
 
-let shoesStorage = localStorage.getItem('storeShoes') ? JSON.parse(localStorage.getItem('storeShoes')) : [];
-let cartStorage = localStorage.getItem('storeCart') ? JSON.parse(localStorage.getItem('storeCart')) : [];
-let getShoesData = ShoeFinder(shoesStorage, cartStorage);
-
 function addShoe () {
     let newColor = addColour.value;
     let newBrand = addBrand.value;
