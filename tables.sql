@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS brands, colours, size, inventory 
+DROP TABLE IF EXISTS brands, colours, size, inventory;
 
 CREATE TABLE brands
 (
@@ -26,12 +26,9 @@ CREATE TABLE inventory
     brands_id int NOT NULL ,
     colours_id int NOT NULL,
     size_id int NOT NULL,
-
-
     FOREIGN key (brands_id) REFERENCES brands(id) ON DELETE CASCADE,
     FOREIGN key (colours_id) REFERENCES colours(id) ON DELETE CASCADE,
     FOREIGN KEY (size_id) REFERENCES size(id) ON DELETE CASCADE
-
 );
 -- INSERT brands into brands DATABASE
 INSERT INTO brands(brands_name) VALUES ('adidas');
