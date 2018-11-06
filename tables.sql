@@ -32,8 +32,7 @@ CREATE TABLE inventory
     FOREIGN key (colours_id) REFERENCES colours(id) ON DELETE CASCADE,
     FOREIGN KEY (size_id) REFERENCES size(id) ON DELETE CASCADE
 
-select inventory.id,brans_id,colours_id,size_id
-select inventory.id,brans_id,colours_id,size_id
+);
 -- INSERT brands into brands DATABASE
 INSERT INTO brands(brands_name) VALUES ('adidas');
 INSERT INTO brands(brands_name) VALUES ('puma');
