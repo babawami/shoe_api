@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const ShoeServices = require('./services/shoes-services');
 const ShoeRoutes = require('./routes/shoe-routes');
+const ShoesAPI = require('./api/shoes-api');
 const session = require('express-session');
 const flash = require('express-flash');
 const pg = require('pg');
@@ -27,6 +28,7 @@ const pool = new Pool({
 
 const shoeServices = ShoeServices(pool);
 const shoeRoutes = ShoeRoutes(shoeServices);
+const shoesAPI = ShoesAPI(shoeServices);
 
 let app = express();
 
@@ -54,13 +56,16 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 // route
-app.get('/');
+app.get('/', shoeRoutes.all);
 app.get('/api/shoes');
 app.get('/api/shoes/brand/:brandname');
 app.get('/api/shoes/size/:size');
 app.get('/api/shoes/brand/:brandname/size/:size');
 app.post('/api/shoes/sold/:id');
 app.post('/api/shoes');
+
+// API
+app.get('/api/shoes-api', shoesAPI.all);
 
 // port set-up
 let PORT = process.env.PORT || 3010;

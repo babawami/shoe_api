@@ -4,11 +4,16 @@ select{
 
 .displayShoes{
     text-transform: capitalize;
+
 }
 
 .displayCart{
     text-transform: capitalize;
 }
+/* 
+.showAll{
+    display: inline;
+} */
 
 
 

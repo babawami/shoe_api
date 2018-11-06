@@ -1,12 +1,11 @@
-// const ShoeServices = require('../services/shoes-services');
 
 module.exports = function (shoeServices) {
-    let all = async (req, res, next) => {
+    const all = async (req, res, next) => {
         try {
             let results = await shoeServices.showAll();
-            res.render('/', {
-                no_shoes: results.length === 0,
-                shoesData: results
+            res.json({
+                status: 'success',
+                data: results
             });
         } catch (err) {
             next(err);

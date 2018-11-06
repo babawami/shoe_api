@@ -33,17 +33,20 @@
 
   <!-- adding handlebars tempalte -->
   <script type="text/x-template" class="shoeTemplate">
-
     {{#each shoesData}}
-         <ul>
-        <li>{{brands}}</li>
-        <li>{{colors}}</li>
-        <li>Size: {{size}}</li>
-        <li>Available: {{qty}}</li>
-        <li>Price: R {{price}}</li>
-       </ul>
-       <button value={{this.id}} class="cart-btn" onclick="addToCart({{this.id}})">add to cart</button>
+    <div class="showAll three columns">
+     
+      <ul>
+     <li>{{brands}}</li>
+     <li>{{colours}}</li>
+     <li>Size: {{size}}</li>
+     <li>Available: {{qty}}</li>
+     <li>Price: R {{price}}</li>
+    </ul>
+    <button value={{this.id}} class="cart-btn" onclick="addToCart({{this.id}})">add to cart</button>
+    </div>
     {{/each}}
+  
 
   </script>
 
@@ -147,16 +150,20 @@
         </div>
       </div>
     </div>
+    <br>
     <div class="error"></div>
+     
     <div class="row">
-      <div class="displayShoes"></div>
-      
+      <div class="displayShoes" ></div>
     </div>
+      
+      
+    
 
     <div class="displayCart"></div>
   </div>
   
-  <script src="js/catalogue.js" charset="utf-8"></script>
+  <!-- <script src="js/catalogue.js" charset="utf-8"></script> -->
   <script src="js/shoe-dom.js" charset="utf-8"></script>
 
   <!-- End Document
