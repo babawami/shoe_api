@@ -20,7 +20,7 @@ let displayShoes = document.querySelector('.displayShoes');
 // let displayCart = document.querySelector('.displayCart');
 
 let showShoes = () => {
-    axios.get('/api/shoes-api')
+    axios.get('/api/shoes')
         .then(function (response) {
             let data = {
                 shoesData: response.data.data

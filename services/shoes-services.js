@@ -11,7 +11,27 @@ module.exports = function ShoeServices (pool) {
         let results = await pool.query(query);
         return results.rows;
     };
+
+    let getBrand = async () => {
+        let result = await pool.query('SELECT * FROM inventory WHERE brands_id =1');
+        let check = await showAll();
+        console.log(check);
+        return result.rows;
+    };
+
+    let getSize = async (size) => {
+        let result = await pool.query('SELECT * FROM inventory WHERE size_id = $1', [size]);
+        return result.rows;
+    };
+
+    let getColour = async (colour) => {
+        let result = await pool.query('SELECT * FROM inventory WHERE colours_is =$1', [colour]);
+        return result.rows;
+    };
     return {
-        showAll
+        showAll,
+        getBrand,
+        getSize,
+        getColour
     };
 };
