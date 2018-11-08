@@ -55,17 +55,10 @@ app.use(bodyParser.urlencoded({
 // parse application/json
 app.use(bodyParser.json());
 
-// route
-// app.get('/', shoeRoutes.all);
-// app.get('/shoes', shoeRoutes.all);
-// app.get('/api/shoes/brand/:brandname');
-// app.get('/api/shoes/size/:size');
-// app.get('/api/shoes/brand/:brandname/size/:size');
-// app.post('/api/shoes/sold/:id');
-// app.post('/api/shoes');
-
 // API
 app.get('/api/shoes', shoesAPI.all);
+app.get('/api/shoes/brand/:brandname', shoesAPI.getBrandSelected);
+app.get('/api/shoes/size/:size', shoesAPI.getSizeSelected);
 
 // port set-up
 let PORT = process.env.PORT || 3010;

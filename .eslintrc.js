@@ -10,5 +10,7 @@ module.exports ={
         "require" : true,
         "beforeEach" : true,
         "after": true,
+        "axios":true,
+        "assert":true,
     }
 }

@@ -11,7 +11,41 @@ module.exports = function (shoeServices) {
             next(err);
         }
     };
+
+    const getBrandSelected = async (req, res) => {
+        try {
+            let brand = req.params.brandname;
+            let showBrand = await shoeServices.getBrand(brand);
+            res.json({
+                status: 'success',
+                data: showBrand
+            });
+        } catch (err) {
+            res.json({
+                status: 'error',
+                error: err.stack
+            });
+        }
+    };
+
+    const getSizeSelected = async (req, res) => {
+        try {
+            let size = req.params.size;
+            let getSizes = await shoeServices.getSize(size);
+            res.json({
+                status: 'success',
+                data: getSizes
+            });
+        } catch (err) {
+            res.json({
+                status: 'error',
+                error: err.stack
+            });
+        }
+    };
     return {
-        all
+        all,
+        getBrandSelected,
+        getSizeSelected
     };
 };

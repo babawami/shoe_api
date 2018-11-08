@@ -25,20 +25,11 @@ let showShoes = () => {
             let data = {
                 shoesData: response.data.data
             };
-            console.log(data)
             displayShoes.innerHTML = complieShoeTemplate(data);
-            // let response = results.data;
-            // let data = response.data;
-            // let html = productListTemplateInstance({
-            //     productList: data
-            // });
-            // let productTableHTML = html;
-            // productsElem.innerHTML = productTableHTML;
         });
 };
 
 window.addEventListener('load', function () {
-
     showShoes();
     // renderTemplate();
     // let showCart = {

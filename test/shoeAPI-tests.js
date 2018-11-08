@@ -26,8 +26,21 @@ describe('Shoe catalogue', function () {
         await pool.query(addShoesSQL);
         let shoes = ShoeServices(pool);
         let result = await shoes.showAll();
-        console.log(await shoes.getBrand());
         assert.equal(3, result.length);
+    });
+    it('Return brand selected ', async () => {
+        await pool.query(addShoesSQL);
+        let shoes = ShoeServices(pool);
+        let result = await shoes.getBrand('nike');
+        delete result[0].id;
+        assert.deepEqual([ { qty: 20, price: 800, brands: 'nike', colours: 'white', size: 10 } ], result);
+    });
+    it('Return shoes by size selected ', async () => {
+        await pool.query(addShoesSQL);
+        let shoes = ShoeServices(pool);
+        let result = await shoes.getSize(8);
+        delete result[0].id;
+        assert.deepEqual([ { qty: 5, price: 500, brands: 'puma', colours: 'red', size: 8 } ], result);
     });
     after(function () {
         pool.end();
