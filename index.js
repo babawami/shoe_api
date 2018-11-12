@@ -4,7 +4,6 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const ShoeServices = require('./services/shoes-services');
-const ShoeRoutes = require('./routes/shoe-routes');
 const ShoesAPI = require('./api/shoes-api');
 const session = require('express-session');
 const flash = require('express-flash');
@@ -59,6 +58,11 @@ app.use(bodyParser.json());
 app.get('/api/shoes', shoesAPI.all);
 app.get('/api/shoes/brand/:brandname', shoesAPI.getBrandSelected);
 app.get('/api/shoes/size/:size', shoesAPI.getSizeSelected);
+app.get('/api/shoes/colour/:colour', shoesAPI.getColourSelected);
+app.get('/api/shoes/brand/:brandname/size/:size', shoesAPI.getBrandSizeSelected);
+app.get('/api/shoes/brand/:brandname/colour/:colour', shoesAPI.getBrandColourSelected);
+app.get('/api/shoes/colour/:colour/size/:size', shoesAPI.getColourSizeSelected);
+app.get('/api/shoes/brand/:brandname/colour/:colour/size/:size', shoesAPI.getBrandColourSize);
 
 // port set-up
 let PORT = process.env.PORT || 3010;

@@ -42,6 +42,41 @@ describe('Shoe catalogue', function () {
         delete result[0].id;
         assert.deepEqual([ { qty: 5, price: 500, brands: 'puma', colours: 'red', size: 8 } ], result);
     });
+    it('Return shoes by colour selected ', async () => {
+        await pool.query(addShoesSQL);
+        let shoes = ShoeServices(pool);
+        let result = await shoes.getColour('black');
+        delete result[0].id;
+        assert.deepEqual([ { qty: 10, price: 650, brands: 'adidas', colours: 'black', size: 5 } ], result);
+    });
+    it('Return shoes by brand and size selected ', async () => {
+        await pool.query(addShoesSQL);
+        let shoes = ShoeServices(pool);
+        let result = await shoes.getBrandSize('adidas', 5);
+        delete result[0].id;
+        assert.deepEqual([ { qty: 10, price: 650, brands: 'adidas', colours: 'black', size: 5 } ], result);
+    });
+    it('Return shoes by brand and colour selected ', async () => {
+        await pool.query(addShoesSQL);
+        let shoes = ShoeServices(pool);
+        let result = await shoes.getBrandColour('nike', 'white');
+        delete result[0].id;
+        assert.deepEqual([ { qty: 20, price: 800, brands: 'nike', colours: 'white', size: 10 } ], result);
+    });
+    it('Return shoes by  colour and size selected ', async () => {
+        await pool.query(addShoesSQL);
+        let shoes = ShoeServices(pool);
+        let result = await shoes.getColourSize('white', 10);
+        delete result[0].id;
+        assert.deepEqual([ { qty: 20, price: 800, brands: 'nike', colours: 'white', size: 10 } ], result);
+    });
+    it('Return shoes by  colour ,size and brand selected ', async () => {
+        await pool.query(addShoesSQL);
+        let shoes = ShoeServices(pool);
+        let result = await shoes.getBrandColourSize('nike', 'white', 10);
+        delete result[0].id;
+        assert.deepEqual([ { qty: 20, price: 800, brands: 'nike', colours: 'white', size: 10 } ], result);
+    });
     after(function () {
         pool.end();
     });
