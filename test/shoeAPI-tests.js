@@ -12,9 +12,9 @@ const pool = new Pool({
 });
 
 const addShoesSQL = `
-INSERT INTO inventory(qty,price, brands_id,colours_id,size_id) VALUES (10,650,1,1,1);
-INSERT INTO inventory(qty,price, brands_id,colours_id,size_id) VALUES (5,500,2,2,2);
-INSERT INTO inventory(qty,price, brands_id,colours_id,size_id) VALUES (20,800,3,3,3);
+INSERT INTO inventory(qty,price, brands_id,colours_id,sizes_id) VALUES (10,650,1,1,1);
+INSERT INTO inventory(qty,price, brands_id,colours_id,sizes_id) VALUES (5,500,2,2,2);
+INSERT INTO inventory(qty,price, brands_id,colours_id,sizes_id) VALUES (20,800,3,3,3);
 `;
 
 describe('Shoe catalogue', function () {
@@ -33,49 +33,57 @@ describe('Shoe catalogue', function () {
         let shoes = ShoeServices(pool);
         let result = await shoes.getBrand('nike');
         delete result[0].id;
-        assert.deepEqual([ { qty: 20, price: 800, brands: 'nike', colours: 'white', size: 10 } ], result);
+        assert.deepEqual([ { qty: 20, price: 800, brand: 'nike', colour: 'white', size: 10 } ], result);
     });
     it('Return shoes by size selected ', async () => {
         await pool.query(addShoesSQL);
         let shoes = ShoeServices(pool);
         let result = await shoes.getSize(8);
         delete result[0].id;
-        assert.deepEqual([ { qty: 5, price: 500, brands: 'puma', colours: 'red', size: 8 } ], result);
+        assert.deepEqual([ { qty: 5, price: 500, brand: 'puma', colour: 'red', size: 8 } ], result);
     });
     it('Return shoes by colour selected ', async () => {
         await pool.query(addShoesSQL);
         let shoes = ShoeServices(pool);
         let result = await shoes.getColour('black');
         delete result[0].id;
-        assert.deepEqual([ { qty: 10, price: 650, brands: 'adidas', colours: 'black', size: 5 } ], result);
+        assert.deepEqual([ { qty: 10, price: 650, brand: 'adidas', colour: 'black', size: 5 } ], result);
     });
     it('Return shoes by brand and size selected ', async () => {
         await pool.query(addShoesSQL);
         let shoes = ShoeServices(pool);
         let result = await shoes.getBrandSize('adidas', 5);
         delete result[0].id;
-        assert.deepEqual([ { qty: 10, price: 650, brands: 'adidas', colours: 'black', size: 5 } ], result);
+        assert.deepEqual([ { qty: 10, price: 650, brand: 'adidas', colour: 'black', size: 5 } ], result);
     });
     it('Return shoes by brand and colour selected ', async () => {
         await pool.query(addShoesSQL);
         let shoes = ShoeServices(pool);
         let result = await shoes.getBrandColour('nike', 'white');
         delete result[0].id;
-        assert.deepEqual([ { qty: 20, price: 800, brands: 'nike', colours: 'white', size: 10 } ], result);
+        assert.deepEqual([ { qty: 20, price: 800, brand: 'nike', colour: 'white', size: 10 } ], result);
     });
     it('Return shoes by  colour and size selected ', async () => {
         await pool.query(addShoesSQL);
         let shoes = ShoeServices(pool);
         let result = await shoes.getColourSize('white', 10);
         delete result[0].id;
-        assert.deepEqual([ { qty: 20, price: 800, brands: 'nike', colours: 'white', size: 10 } ], result);
+        assert.deepEqual([ { qty: 20, price: 800, brand: 'nike', colour: 'white', size: 10 } ], result);
     });
     it('Return shoes by  colour ,size and brand selected ', async () => {
         await pool.query(addShoesSQL);
         let shoes = ShoeServices(pool);
         let result = await shoes.getBrandColourSize('nike', 'white', 10);
         delete result[0].id;
-        assert.deepEqual([ { qty: 20, price: 800, brands: 'nike', colours: 'white', size: 10 } ], result);
+        assert.deepEqual([ { qty: 20, price: 800, brand: 'nike', colour: 'white', size: 10 } ], result);
+    });
+    it('Return ids from brand , colour, size ', async () => {
+        await pool.query(addShoesSQL);
+        let shoes = ShoeServices(pool);
+        let specs = { brand: 'puma', colour: 'green', size: 13, price: 500, qty: 10 };
+        let result = await shoes.getIds(specs);
+        // console.log(result);
+        assert.deepEqual({ brands_id: 2, colours_id: 4, sizes_id: 4 }, result);
     });
     after(function () {
         pool.end();
