@@ -130,27 +130,34 @@ module.exports = function ShoeServices (pool) {
         return ids;
     };
 
-    // let addShoe = async (shoe) => {
-    //     let data = {
-    //         brand: shoe.brand_id,
-    //         colour: shoe.colour_id,
-    //         size: shoe.sizes_id,
-    //         price: shoe.prize,
-    //         qty: shoe.qty
-    //     };
-    //     let BrandID = await pool.query('SELECT id FROM brands WHERE ');
-    // };
-
-    // let updateShoe = async (shoe) => {
-    //     let data = {
-    //         brand: shoe.brand_id,
-    //         coulr: shoe.colour_id,
-    //         size: shoe.size_id,
-    //         price: shoe.prize,
-    //         qty: shoe.qty
-
-    //     };
-    // };
+    let addShoe = async (shoe) => {
+        // should provide id for colour,brand and shoe
+        let getIDs = await getIds(shoe);
+        let brandsID = getIDs.brands_id;
+        let coloursID = getIDs.colours_id;
+        let sizesID = getIDs.sizes_id;
+        
+        let findShoe = `SELECT 1  FROM inventory
+                     WHERE brands_id = $1 AND colours_id = $2 AND sizes_id = $3`;
+        let shoeResult = await pool.query(findShoe, [brandsID, coloursID, sizesID]);
+        // console.log(shoeResult.rows.length);
+        if (shoeResult.rows.length === 1) {
+            let updateQuery = `UPDATE inventory
+                SET qty = qty + $1,
+                    price =  $2
+                    WHERE brands_id = $3 AND colours_id = $4 AND sizes_id = $5`;
+            await pool.query(updateQuery, [shoe.qty, shoe.price, brandsID, coloursID, sizesID]);
+            return 'updated';
+        }
+        if (shoeResult.rows.length === 0) {
+            await pool.query('insert into inventory(brands_id,colours_id,sizes_id,price,qty) values($1,$2,$3,$4,$5)', [brandsID, coloursID, sizesID, shoe.price, shoe.qty]);
+            return 'shoe added';
+        }
+        // let result = await pool.query('SELECT * FROM inventory');
+        // console.log('-----------');
+        // console.log(result.rows);
+        // console.log('-----------');
+    };
 
     return {
         showAll,
@@ -161,7 +168,8 @@ module.exports = function ShoeServices (pool) {
         getBrandColour,
         getColourSize,
         getBrandColourSize,
-        getIds
+        getIds,
+        addShoe
 
     };
 };

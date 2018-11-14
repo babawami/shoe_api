@@ -82,9 +82,22 @@ describe('Shoe catalogue', function () {
         let shoes = ShoeServices(pool);
         let specs = { brand: 'puma', colour: 'green', size: 13, price: 500, qty: 10 };
         let result = await shoes.getIds(specs);
-        // console.log(result);
         assert.deepEqual({ brands_id: 2, colours_id: 4, sizes_id: 4 }, result);
     });
+    // it('Return message "updated" if it\'s existing shoe', async () => {
+    //     await pool.query(addShoesSQL);
+    //     let shoes = ShoeServices(pool);
+    //     let specs = { brand: 'nike', colour: 'white', size: 10, price: 800, qty: 30 };
+    //     let result = await shoes.addShoe(specs);
+    //     assert.deepEqual('updated', result);
+    // });
+    // it('Return message "shoe added" if it\'s new shoe', async () => {
+    //     await pool.query(addShoesSQL);
+    //     let shoes = ShoeServices(pool);
+    //     let specs = { brand: 'nike', colour: 'white', size: 10, price: 800, qty: 30 };
+    //     let result = await shoes.addShoe(specs);
+    //     assert.deepEqual('updated', result);
+    // });
     after(function () {
         pool.end();
     });
